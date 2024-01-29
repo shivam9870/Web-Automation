@@ -12,4 +12,6 @@
 
 ``pip install selenium pytest pytest-html allure-pytest
 ``
+- import the logging
+- create the .ini file in the root folder
 
