@@ -14,4 +14,3 @@
 ``
 - import the logging
 - create the .ini file in the root folder
-
