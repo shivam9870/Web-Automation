@@ -1,6 +1,7 @@
 from selenium import webdriver
 import logging
 
+
 def test_open_page():
     driver = webdriver.Chrome()
     Logger = logging.getLogger(__name__)
