@@ -1,3 +1,6 @@
+# Task: Set up a basic test automation framework using a tool of their choice (e.g., Selenium, Appium, or any other
+# relevant tool). Include sample test cases and demonstrate the execution of test scripts
+
 # Here we automate the 'Katalon Healthcare' Page
 # We automate the appointment with the help of selenium
 import time
