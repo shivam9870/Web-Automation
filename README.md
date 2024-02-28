@@ -14,3 +14,8 @@
 ``
 - import the logging
 - create the .ini file in the root folder
+
+## To run parallely code 
+``pip install pytest -xdist``
+
+``pytest -n auto  code/28feb24/test_lab07.py -s -v``

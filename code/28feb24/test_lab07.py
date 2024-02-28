@@ -1,9 +1,8 @@
 # App.vwo | Negative and positive test cases
 
-import time
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import time
 
 def test_positive_login():
     driver = webdriver.Edge()
@@ -29,5 +28,6 @@ def test_negative_login():
     login_but = driver.find_element(By.XPATH,"//span[@data-qa='ezazsuguuy']")
     login_but.click()
     print(driver.title)
+    assert driver.current_url == "https://app.vwo.com/#/login"
     time.sleep(5)
     driver.quit()
