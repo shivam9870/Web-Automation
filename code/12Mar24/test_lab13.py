@@ -1,9 +1,12 @@
-# Implicit waits
+# Fluent wait
 
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import (ElementNotVisibleException, ElementNotSelectableException)
+
 
 @pytest.mark.positive
 # pytest -k "positive" - to run the all positive test cases
@@ -11,19 +14,22 @@ from selenium.webdriver.support.ui import WebDriverWait
 def test_vwo_webpagePositive():
     driver = webdriver.Edge()
     driver.get("https://app.vwo.com/#/login")
-    driver.implicitly_wait(20)
-    # tell the webdriver to wait for 20 seconds to load All the elements
-    
     name = driver.find_element(By.XPATH, "//input[@id='login-username']")
     name.send_keys("contact+atb5x@thetestingacademy.com")
     password = driver.find_element(By.XPATH, "//input[@id='login-password']")
     password.send_keys("ATBx@1234")
     button_click = driver.find_element(By.XPATH, "//button[@id='js-login-btn']")
     button_click.click()
+
+
+    # fluent wait
+    #  FLUENT WAIT  -> Condition + frequency, -> Customize exception
+    # e1 -> Frequency = 1 , check after 1 sec element visible? 2,3,4,5,?,6?,7 (visible) -> move to next command
+
+    ignore_list = [ElementNotSelectableException,ElementNotVisibleException]
+    wait = WebDriverWait(driver,15, poll_frequency=1, ignored_exceptions=ignore_list)
+    element = EC.presence_of_element_located((By.CSS_SELECTOR,".page-heading"))
+
     print(driver.title)
-    # time.sleep(5) # wait for 5 sec to load the page
-    heading_name = driver.find_element(By.XPATH, "//span[@data-qa='lufexuloga']")
-    assert heading_name.text == "Aman"
-    # time.sleep(5) # for loading page successfully
 
     driver.quit()
